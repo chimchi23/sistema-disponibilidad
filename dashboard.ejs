@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+        <% users.forEach(user => { %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.role %></td>
+            <td>
+                <form action="/update-role" method="POST">
+                    <input type="hidden" name="userId" value="<%= user.id %>">
+                    <select name="role">
+                        <option value="user">Usuario</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <button type="submit">Actualizar Rol</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
